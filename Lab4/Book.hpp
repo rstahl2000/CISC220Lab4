@@ -22,6 +22,8 @@ public:
 	Book(string first,string last,string book,int yearPub, int rate[]);
 	double avgRatings();
 	void printRatings();
+	void printInfo();
+	bool operator>(Book);
 	~Book();
 };
 

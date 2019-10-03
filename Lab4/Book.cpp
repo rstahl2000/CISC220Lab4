@@ -12,24 +12,26 @@ Book::Book(string first,string last,string book,int yearPub){
 	bookName=book;
 	year=yearPub;
 	int rate[]={0,0,0,0,0,0,0,0,0,0};
-	ratings=new int[10];
 	ratings=rate;
+	ratings=new int[10];
 }
 Book::Book(string first,string last,string book,int yearPub, int rate[]){
 	firstName=first;
 	lastName=last;
 	bookName=book;
 	year=yearPub;
+	rate=new int[10];
 	ratings=new int[10];
 	ratings=rate;
 }
 
 double Book::avgRatings(){
-	double sum=0;
+	double sum=0.0;
 	for(int i=0;i<10;i++){
 		sum+=ratings[i];
 	}
-	return sum/10.0;
+	sum/=10.0;
+	return sum;
 }
 
 void Book::printRatings(){
@@ -38,12 +40,26 @@ void Book::printRatings(){
 		cout<<"(no ratings yet)"<<endl;
 	}
 	else{
-		cout<<"Average rating is: "<<avgRate<<endl;
+		cout<<"Average Rating: "<<avgRate<<endl;
 	}
 }
 
+void Book::printInfo(){
+	cout<<"Book Title: "<<bookName<<endl;
+	cout<<"Author: "<<firstName<<" "<<lastName<<endl;
+	cout<<"Year Published: "<<year<<endl;
+	this->printRatings();
+}
+
+bool Book::operator>(Book x){
+	double avgHere=this->avgRatings();
+	double avgComp=x.avgRatings();
+	return avgHere>avgComp;
+}
+
 Book::~Book(){
-	delete ratings;
+	delete[] ratings;
+
 	cout<<"Book Deleted"<<endl;
 }
 
