@@ -18,12 +18,13 @@ class Book{
 	string bookName;
 	int year;
 public:
+	Book();
 	Book(string first,string last,string book,int yearPub);
 	Book(string first,string last,string book,int yearPub, int rate[]);
 	double avgRatings();
 	void printRatings();
 	void printInfo();
-	bool operator>(Book);
+	bool operator>(Book*);
 	~Book();
 };
 

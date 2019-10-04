@@ -6,21 +6,24 @@
  */
 #include <iostream>
 #include "Book.hpp"
+Book::Book(){
+
+}
 Book::Book(string first,string last,string book,int yearPub){
 	firstName=first;
 	lastName=last;
 	bookName=book;
 	year=yearPub;
-	int rate[]={0,0,0,0,0,0,0,0,0,0};
-	ratings=rate;
 	ratings=new int[10];
+	for(int i=0;i<10;i++){
+		ratings[i]=0;
+	}
 }
 Book::Book(string first,string last,string book,int yearPub, int rate[]){
 	firstName=first;
 	lastName=last;
 	bookName=book;
 	year=yearPub;
-	rate=new int[10];
 	ratings=new int[10];
 	ratings=rate;
 }
@@ -49,18 +52,20 @@ void Book::printInfo(){
 	cout<<"Author: "<<firstName<<" "<<lastName<<endl;
 	cout<<"Year Published: "<<year<<endl;
 	this->printRatings();
+	cout<<"\n";
 }
 
-bool Book::operator>(Book x){
+bool Book::operator>(Book *x){
 	double avgHere=this->avgRatings();
-	double avgComp=x.avgRatings();
+	double avgComp=x->avgRatings();
 	return avgHere>avgComp;
 }
 
 Book::~Book(){
 	delete[] ratings;
 
-	cout<<"Book Deleted"<<endl;
+
+	cout<<bookName<<" Deleted"<<endl;
 }
 
 
